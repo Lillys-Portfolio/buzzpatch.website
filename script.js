@@ -1,32 +1,28 @@
 const garden = document.getElementById("gardenArea");
 const pages = document.querySelectorAll("section");
-const buttons = document.querySelectorAll("nav button");
-const seasons = ["spring.jpg", "summer.jpg", "autumn.jpg", "winter.jpg"];
+const navButtons = document.querySelectorAll("nav button");
 
-function switchPage(id) {
-  pages.forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-buttons.forEach(btn => btn.onclick = () => switchPage(btn.dataset.target));
-
-// Seasonal background
-garden.style.backgroundImage = `url(${seasons[Math.floor(Math.random() * seasons.length)]})`;
-
-document.querySelectorAll(".taskMenu button").forEach(btn => {
-  btn.onclick = () => handleTask(btn.dataset.action);
+navButtons.forEach(btn => {
+  btn.onclick = () => {
+    pages.forEach(p => p.classList.remove("active"));
+    document.getElementById(btn.dataset.target).classList.add("active");
+  };
 });
 
-function handleTask(action) {
-  clearEnemy();
-  const effect = document.createElement("div");
-  effect.className = action === "water" ? "splash" : action === "feed" ? "flurry" : "";
-  effect.textContent = action === "water" ? "Splash!" : action === "feed" ? "Flowers!" : "";
-  effect.style.left = `${Math.random() * 80}%`;
-  effect.style.top = `${Math.random() * 80}%`;
-  garden.appendChild(effect);
-  setTimeout(() => effect.remove(), 1000);
-  lastAction = Date.now();
-}
+document.querySelectorAll(".taskMenu button").forEach(btn => {
+  btn.onclick = () => {
+    clearEnemy();
+    const type = btn.dataset.action;
+    const effect = document.createElement("div");
+    effect.className = type === "water" ? "splash" : type === "feed" ? "flurry" : "";
+    effect.textContent = type === "water" ? "Splash!" : type === "feed" ? "Flowers!" : "";
+    effect.style.left = `${Math.random() * 80}%`;
+    effect.style.top = `${Math.random() * 80}%`;
+    garden.appendChild(effect);
+    setTimeout(() => effect.remove(), 1000);
+    lastAction = Date.now();
+  };
+});
 
 let lastAction = Date.now();
 setInterval(() => {
@@ -47,9 +43,11 @@ function clearEnemy() {
 
 document.getElementById("loginForm").onsubmit = e => {
   e.preventDefault();
-  document.getElementById("swarmOverlay").classList.remove("hidden");
+  const swarm = document.getElementById("swarmOverlay");
+  const content = document.getElementById("beeContent");
+  swarm.classList.remove("hidden");
   setTimeout(() => {
-    document.getElementById("swarmOverlay").classList.add("hidden");
-    document.getElementById("beeContent").classList.remove("hidden");
+    swarm.classList.add("hidden");
+    content.classList.remove("hidden");
   }, 1500);
 };
