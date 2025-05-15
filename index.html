@@ -12,6 +12,7 @@
     <button onclick="showSection('gardenSection')">🌼 Garden</button>
     <button onclick="showSection('beedexSection')">📘 BeeDex</button>
     <button onclick="showSection('loginSection')">🔐 Login</button>
+    <button onclick="showSection('aboutSection')">❓ About</button>
   </nav>
 
   <div class="section active" id="gardenSection">
@@ -29,7 +30,7 @@
   <div class="section" id="beedexSection">
     <h1>📘 Your BeeDex</h1>
     <div class="beedex-grid" id="beedexList">
-      <!-- Dynamically filled by JavaScript -->
+      <!-- BeeDex content will stay the same -->
     </div>
   </div>
 
@@ -41,6 +42,25 @@
       <button type="submit">Login</button>
     </form>
     <p id="loginMessage" class="message"></p>
+    <div id="swarmOverlay" class="swarm-overlay hidden"></div>
+    <div id="beeContent" class="bee-content hidden">
+      <h2>Learn About Bees!</h2>
+      <ul>
+        <li><a href="https://www.bbc.co.uk/bitesize/articles/zjbgcj6" target="_blank">Quiz: Bee Facts</a></li>
+        <li><a href="https://www.youtube.com/watch?v=b6nNfBq4FUE" target="_blank">Watch: How Bees Help</a></li>
+        <li><a href="https://www.savebees.org" target="_blank">Support Bees</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="aboutSection">
+    <h1>❓ About / Contact</h1>
+    <p>Support bee-friendly initiatives:</p>
+    <ul>
+      <li><a href="https://www.bumblebeeconservation.org/" target="_blank">Bumblebee Conservation Trust</a></li>
+      <li><a href="https://www.honeybeesuite.com/how-to-remove-bees/" target="_blank">Safe Hive Removal</a></li>
+      <li><a href="https://www.localhoneyfinder.org/" target="_blank">Buy Local Honey</a></li>
+    </ul>
   </div>
 
   <script src="script.js"></script>
