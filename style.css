@@ -1,137 +1,61 @@
 body {
-  font-family: sans-serif;
-  background-color: #d6f3f9;
   margin: 0;
-  padding: 0;
+  font-family: sans-serif;
+  background: #d6f3f9;
 }
-
 nav {
-  background-color: #ffe066;
+  background: #ffe066;
   padding: 1em;
   text-align: center;
 }
-
 nav button {
-  background-color: #a8d5a0;
+  background: #a8d5a0;
   border: none;
-  margin: 0 10px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
+  margin: 0 5px;
+  padding: 10px;
   border-radius: 5px;
+  cursor: pointer;
 }
-
-.section {
+section {
   display: none;
   padding: 20px;
 }
-
-.section.active {
+section.active {
   display: block;
 }
-
 .garden {
-  display: flex;
-  flex-wrap: wrap;
   min-height: 200px;
   background-size: cover;
   border: 2px solid #a8d5a0;
   padding: 10px;
   position: relative;
-  overflow: hidden;
-  transition: background-image 1s ease-in-out;
+  transition: background-image 1s ease;
 }
-
-.task-btn {
-  margin: 10px;
-  padding: 10px;
-  font-size: 16px;
+.taskMenu button {
+  margin: 5px;
 }
-
-.popup {
-  display: none;
-  position: absolute;
-  background: #fff;
-  border: 1px solid #000;
-  padding: 10px;
-}
-
-.swarm-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(45deg, rgba(255, 230, 102, 0.6), rgba(168, 213, 160, 0.6) 10px);
-  animation: swarm 1s forwards;
-  z-index: 999;
-}
-
-@keyframes swarm {
-  0% { top: -100%; }
-  100% { top: 0; }
-}
-
-.hidden {
-  display: none;
-}
-
-.bee-content {
-  background-color: #fff9c4;
-  padding: 20px;
-  border: 2px dashed #ffe066;
-}
-
-/* Splash effect */
 .splash, .flurry {
   position: absolute;
-  font-size: 24px;
   font-weight: bold;
-  pointer-events: none;
-  animation: floatUp 1s ease-out forwards;
+  animation: rise 1s forwards;
   z-index: 10;
 }
-
-.splash {
-  color: #4fc3f7;
-  text-shadow: 0 0 5px #4fc3f7;
+.splash { color: #4fc3f7; }
+.flurry { color: #ffb74d; }
+@keyframes rise {
+  to { transform: translateY(-50px); opacity: 0; }
 }
-
-.flurry {
-  color: #ffb74d;
-  text-shadow: 0 0 5px #ffb74d;
-}
-
-@keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-
-/* Angry Bee */
 .enemyBee {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: #a64ca6;
+  bottom: 10px;
+  right: 10px;
+  background: purple;
   color: white;
-  font-weight: bold;
   padding: 10px;
   border-radius: 50%;
-  animation: buzz 0.5s infinite alternate;
-  box-shadow: 0 0 10px red;
+  animation: shake 0.3s infinite alternate;
 }
-
-@keyframes buzz {
-  from {
-    transform: translate(0, 0);
-  }
-  to {
-    transform: translate(-5px, 5px);
-  }
+@keyframes shake {
+  to { transform: translate(-3px, 3px); }
 }
+.hidden { display: none; }
