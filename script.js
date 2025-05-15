@@ -1,124 +1,78 @@
-
-
-const beeNames = [
-  "Saul Stinger", "Heisenbuzz", "Beezefeld", "StingRay", "Bumbleina",
-  "Honeycomb", "Zzzara", "PollenPaul", "Waggle", "SunDancer",
-  "Nectarine", "Dr. Buzz", "Guz Fly", "Amberwing"
-];
-const moods = ["Happy", "Hungry", "Sleepy", "Excited", "Lazy"];
-let sleepIntervals = {};
+const sections = document.querySelectorAll(".section");
 
 function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  sections.forEach(section => section.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-function createGarden() {
-  const garden = document.getElementById("garden");
-  const beedex = document.getElementById("beedexList");
-  garden.innerHTML = "";
-  beedex.innerHTML = "";
+// Seasonal background change
+const garden = document.getElementById("garden");
+const seasons = [
+  "url('spring.jpg')",
+  "url('summer.jpg')",
+  "url('autumn.jpg')",
+  "url('winter.jpg')"
+];
+garden.style.backgroundImage = seasons[Math.floor(Math.random() * seasons.length)];
 
-  for (let i = 0; i < 12; i++) {
-    const plot = document.createElement("div");
-    plot.className = "plot";
-    plot.dataset.index = i;
-
-    if (Math.random() > 0.25) {
-      const bee = document.createElement("div");
-      bee.className = "bee";
-
-      const name = beeNames[i % beeNames.length];
-      const mood = moods[Math.floor(Math.random() * moods.length)];
-
-      bee.innerText = "🐝";
-      bee.title = `${name} - ${mood}`;
-      bee.onclick = () => showPopup(name, mood);
-
-      const sleepBar = document.createElement("div");
-      sleepBar.className = "sleep-bar";
-      const fill = document.createElement("div");
-      fill.className = "sleep-fill";
-      fill.style.width = "0%";
-      sleepBar.appendChild(fill);
-
-      plot.appendChild(bee);
-      plot.appendChild(sleepBar);
-
-      // BeeDex
-      const card = document.createElement("div");
-      card.className = "beecard";
-      card.innerHTML = `<p>🐝 <strong>${name}</strong></p><p>Mood: ${mood}</p>`;
-      beedex.appendChild(card);
-    } else {
-      plot.onclick = () => plantFlower(plot);
-    }
-
-    garden.appendChild(plot);
-  }
-}
-
-function showPopup(name, mood) {
-  const popup = document.getElementById("beePopup");
-  popup.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p><button onclick="closePopup()">Close</button>`;
-  popup.style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("beePopup").style.display = "none";
-}
-
+// Splash / Flurry Effects
 function waterFlowers() {
-  alert("💧 You watered the flowers!");
+  createEffect("Splash!", "splash");
 }
 
 function feedBees() {
-  alert("🍯 You fed the bees!");
+  createEffect("Flowers!", "flurry");
+}
+
+function createEffect(text, className) {
+  const effect = document.createElement("div");
+  effect.className = className;
+  effect.innerText = text;
+
+  // Position randomly in garden
+  const x = Math.random() * (garden.offsetWidth - 100);
+  const y = Math.random() * (garden.offsetHeight - 50);
+  effect.style.left = `${x}px`;
+  effect.style.top = `${y}px`;
+
+  garden.appendChild(effect);
+  setTimeout(() => effect.remove(), 1000);
+}
+
+function putBeesToSleep() {
+  alert("The bees are tucked in for a nap.");
 }
 
 function handleLogin(event) {
   event.preventDefault();
-  document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
+  const swarm = document.getElementById("swarmOverlay");
+  const content = document.getElementById("beeContent");
+  swarm.classList.remove("hidden");
+  setTimeout(() => {
+    swarm.classList.add("hidden");
+    content.classList.remove("hidden");
+  }, 1500);
 }
 
-function putBeesToSleep() {
-  const plots = document.querySelectorAll(".plot");
-  plots.forEach((plot, index) => {
-    const bee = plot.querySelector(".bee");
-    const fill = plot.querySelector(".sleep-fill");
+// Angry bee logic
+let lastAction = Date.now();
 
-    if (bee && fill) {
-      bee.classList.add("sleeping");
-      bee.parentElement.classList.add("sleeping");
-
-      let percent = 0;
-      if (sleepIntervals[index]) clearInterval(sleepIntervals[index]);
-
-      sleepIntervals[index] = setInterval(() => {
-        if (percent < 100) {
-          percent += 10;
-          fill.style.width = `${percent}%`;
-        } else {
-          clearInterval(sleepIntervals[index]);
-          bee.classList.remove("sleeping");
-          plot.classList.remove("sleeping");
-          fill.style.width = "0%";
-        }
-      }, 500); // each step = 0.5s
-    }
-  });
-
-  alert("🌙 Bees are sleeping...");
-}
-
-function plantFlower(plot) {
-  if (!plot.classList.contains("flowered")) {
-    plot.classList.add("flowered");
-    plot.onclick = null;
-    alert("🌼 You planted a flower!");
-  } else {
-    alert("🌼 There's already a flower here!");
+function checkNeglect() {
+  if (Date.now() - lastAction > 10000 && !document.querySelector(".enemyBee")) {
+    const enemy = document.createElement("div");
+    enemy.className = "enemyBee";
+    enemy.innerText = "Buzz Off!";
+    garden.appendChild(enemy);
+    garden.style.filter = "hue-rotate(180deg)";
   }
 }
+setInterval(checkNeglect, 3000);
 
-createGarden();
+document.querySelectorAll(".task-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    lastAction = Date.now();
+    garden.style.filter = "none";
+    const enemy = document.querySelector(".enemyBee");
+    if (enemy) enemy.remove();
+  });
+});
