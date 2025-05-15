@@ -25,11 +25,10 @@ section.active {
 }
 .garden {
   min-height: 200px;
-  background-size: cover;
-  border: 2px solid #a8d5a0;
+  background-color: #a8d5a0;
+  border: 2px solid #88bb88;
   padding: 10px;
   position: relative;
-  transition: background-image 1s ease;
 }
 .taskMenu button {
   margin: 5px;
