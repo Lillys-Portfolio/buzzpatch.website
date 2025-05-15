@@ -1,17 +1,17 @@
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   background: #d6f3f9;
+  text-align: center;
 }
 nav {
   background: #ffe066;
-  padding: 1em;
-  text-align: center;
+  padding: 10px;
 }
 nav button {
+  margin: 5px;
   background: #a8d5a0;
   border: none;
-  margin: 0 5px;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -23,38 +23,18 @@ section {
 section.active {
   display: block;
 }
-.garden {
-  min-height: 200px;
-  background-color: #a8d5a0;
-  border: 2px solid #88bb88;
-  padding: 10px;
+#gardenArea {
+  height: 200px;
+  background: #a8d5a0;
+  margin: 10px;
   position: relative;
-}
-.taskMenu button {
-  margin: 5px;
-}
-.splash, .flurry {
-  position: absolute;
-  font-weight: bold;
-  animation: rise 1s forwards;
-  z-index: 10;
-}
-.splash { color: #4fc3f7; }
-.flurry { color: #ffb74d; }
-@keyframes rise {
-  to { transform: translateY(-50px); opacity: 0; }
 }
 .enemyBee {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background: purple;
+  background: red;
   color: white;
   padding: 10px;
   border-radius: 50%;
-  animation: shake 0.3s infinite alternate;
 }
-@keyframes shake {
-  to { transform: translate(-3px, 3px); }
-}
-.hidden { display: none; }
