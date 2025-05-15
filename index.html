@@ -7,61 +7,40 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <nav>
-    <button onclick="showSection('gardenSection')">🌼 Garden</button>
-    <button onclick="showSection('beedexSection')">📘 BeeDex</button>
-    <button onclick="showSection('loginSection')">🔐 Login</button>
-    <button onclick="showSection('aboutSection')">❓ About</button>
+    <button data-target="garden">🌼 Garden</button>
+    <button data-target="beedex">📘 BeeDex</button>
+    <button data-target="login">🔐 Login</button>
   </nav>
 
-  <div class="section active" id="gardenSection">
+  <section id="garden" class="active">
     <h1>🐝 BuzzPatch Bee Garden</h1>
     <p>Click a bee to care for it!</p>
-    <div class="garden" id="garden"></div>
-    <div id="taskMenu">
-      <button class="task-btn" onclick="waterFlowers()">💧 Water</button>
-      <button class="task-btn" onclick="feedBees()">🍯 Feed</button>
-      <button class="task-btn" onclick="putBeesToSleep()">🌙 Sleep</button>
+    <div id="gardenArea" class="garden"></div>
+    <div class="taskMenu">
+      <button data-action="water">💧 Water</button>
+      <button data-action="feed">🍯 Feed</button>
+      <button data-action="sleep">🌙 Sleep</button>
     </div>
-    <div class="popup" id="beePopup"></div>
-  </div>
+  </section>
 
-  <div class="section" id="beedexSection">
+  <section id="beedex">
     <h1>📘 Your BeeDex</h1>
-    <div class="beedex-grid" id="beedexList">
-      <!-- BeeDex content will stay the same -->
-    </div>
-  </div>
+    <div id="beedexList"></div>
+  </section>
 
-  <div class="section" id="loginSection">
+  <section id="login">
     <h1>🔐 Login</h1>
-    <form onsubmit="handleLogin(event)">
+    <form id="loginForm">
       <input type="text" placeholder="Username" required />
       <input type="password" placeholder="Password" required />
       <button type="submit">Login</button>
     </form>
-    <p id="loginMessage" class="message"></p>
-    <div id="swarmOverlay" class="swarm-overlay hidden"></div>
-    <div id="beeContent" class="bee-content hidden">
-      <h2>Learn About Bees!</h2>
-      <ul>
-        <li><a href="https://www.bbc.co.uk/bitesize/articles/zjbgcj6" target="_blank">Quiz: Bee Facts</a></li>
-        <li><a href="https://www.youtube.com/watch?v=b6nNfBq4FUE" target="_blank">Watch: How Bees Help</a></li>
-        <li><a href="https://www.savebees.org" target="_blank">Support Bees</a></li>
-      </ul>
+    <div id="swarmOverlay" class="hidden"></div>
+    <div id="beeContent" class="hidden">
+      <p>Welcome! Learn about bees here!</p>
     </div>
-  </div>
-
-  <div class="section" id="aboutSection">
-    <h1>❓ About / Contact</h1>
-    <p>Support bee-friendly initiatives:</p>
-    <ul>
-      <li><a href="https://www.bumblebeeconservation.org/" target="_blank">Bumblebee Conservation Trust</a></li>
-      <li><a href="https://www.honeybeesuite.com/how-to-remove-bees/" target="_blank">Safe Hive Removal</a></li>
-      <li><a href="https://www.localhoneyfinder.org/" target="_blank">Buy Local Honey</a></li>
-    </ul>
-  </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
