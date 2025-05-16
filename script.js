@@ -1,3 +1,8 @@
+// Screen references
+const loginScreen = document.getElementById('login-screen');
+const factsQuizScreen = document.getElementById('facts-quiz-screen');
+const beeGardenScreen = document.getElementById('bee-garden-screen');
+
 const loginForm = document.getElementById('login-form');
 const loginError = document.getElementById('login-error');
 
