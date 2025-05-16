@@ -69,6 +69,14 @@ function showScreen(screenToShow) {
     screen.classList.remove('active')
   );
   screenToShow.classList.add('active');
+
+  // Toggle honey animation
+  const honeyAnimation = document.getElementById('honey-animation');
+  if (screenToShow === loginScreen) {
+    honeyAnimation.style.display = 'block';
+  } else {
+    honeyAnimation.style.display = 'none';
+  }
 }
 
 // Add bee to garden
