@@ -1,71 +1,47 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #d6f3f9; /* Sky Blue */
-  color: #333;
-  text-align: center;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #d6f3f9;
+    text-align: center;
+    padding: 20px;
 }
 
-.screen {
-  display: none;
-}
-
-.screen.active {
-  display: block;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
-
-.garden {
-  margin: 20px auto;
-  width: 80%;
-  min-height: 150px;
-  background-color: #a8d5a0; /* Garden Leaf Green */
-  border: 2px solid #ffe066; /* Soft Honey Yellow */
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.garden span.bee {
-  font-size: 30px;
-  cursor: default;
-  user-select: none;
-}
-
-.controls button {
-  background-color: #ffe066;
-  border: none;
-  padding: 10px 15px;
-  margin: 5px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.controls button:hover {
-  background-color: #ffda3d;
+.hidden {
+    display: none;
 }
 
 button {
-  cursor: pointer;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #ffe066;
+    border: none;
+    cursor: pointer;
 }
 
-.quiz-btn {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #ffe066;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
+#garden {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
 }
 
-.quiz-btn:hover {
-  background-color: #ffda3d;
+.bee {
+    width: 40px;
+    height: 40px;
+    background-color: #a8d5a0;
+    border-radius: 50%;
+    margin: 10px;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.bee.angry {
+    background-color: red;
+}
+
+.quiz-slide {
+    display: none;
+}
+
+.quiz-slide.active {
+    display: block;
 }
