@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>BuzzPatch Bee Garden</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BuzzPatch Bee Garden</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage">
-        <h1>BuzzPatch Login</h1>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <p id="loginError" style="color: red;"></p>
-    </div>
+  <!-- LOGIN PAGE -->
+  <div id="login-page" class="page">
+    <h2>Login</h2>
+    <input id="username" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button id="login-btn">Login</button>
+    <p id="login-error" class="error"></p>
+  </div>
 
-    <!-- Facts and Quiz Page -->
-    <div id="factsPage" class="hidden">
-        <h2>Welcome to Bee Facts!</h2>
-        <p>Did you know? Bees communicate through dancing!</p>
-        <div id="quizCarousel">
-            <div class="quiz-slide active">What do bees collect? <br><button>Honey</button> <button>Nectar</button></div>
-            <div class="quiz-slide">How many eyes do bees have? <br><button>5</button> <button>2</button></div>
-            <div class="quiz-slide">What color are most bees? <br><button>Red</button> <button>Yellow</button></div>
-            <button onclick="prevQuestion()">Previous</button>
-            <button onclick="nextQuestion()">Next</button>
-        </div>
-        <button onclick="goToGarden()">Go to Bee Garden</button>
+  <!-- FACTS & QUIZ PAGE -->
+  <div id="facts-quiz-page" class="page" style="display:none;">
+    <h2>Bee Facts & Quiz</h2>
+    <div id="quiz-container">
+      <div id="quiz-question"></div>
+      <button id="prev-question">Previous</button>
+      <button id="next-question">Next</button>
     </div>
+    <button id="go-to-garden-btn">Go to Bee Garden</button>
+  </div>
 
-    <!-- Bee Garden -->
-    <div id="gardenPage" class="hidden">
-        <h2>Bee Garden</h2>
-        <div>
-            <button onclick="spawnBee('feed')">Feed</button>
-            <button onclick="spawnBee('water')">Water</button>
-            <button onclick="spawnBee('sleep')">Sleep</button>
-        </div>
-        <div id="garden"></div>
+  <!-- BEE GARDEN PAGE -->
+  <div id="bee-garden-page" class="page" style="display:none;">
+    <h2>Bee Garden</h2>
+    <div id="garden-controls">
+      <button id="feed-btn">Feed Bee</button>
+      <button id="water-btn">Water Bee</button>
+      <button id="sleep-btn">Put Bee to Sleep</button>
     </div>
+    <div id="garden"></div>
+    <button id="logout-btn">Logout</button>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
