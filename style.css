@@ -6,37 +6,32 @@ body {
   padding: 20px;
 }
 
-.screen {
-  display: none;
-}
-
-.screen.active {
-  display: block;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
-
 .garden {
+  position: relative;
   margin: 20px auto;
   width: 80%;
-  min-height: 150px;
+  height: 300px;
   background-color: #a8d5a0; /* Garden Leaf Green */
   border: 2px solid #ffe066; /* Soft Honey Yellow */
   border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  overflow: hidden;
 }
 
-.garden span.bee {
+.bee {
+  position: absolute;
   font-size: 30px;
-  cursor: default;
   user-select: none;
+  cursor: default;
+  transition: filter 0.3s ease;
+}
+
+.need-bar {
+  position: absolute;
+  height: 6px;
+  background-color: #ffe066;
+  border-radius: 3px;
+  bottom: -10px;
+  left: 0;
 }
 
 .controls button {
@@ -50,22 +45,5 @@ body {
 }
 
 .controls button:hover {
-  background-color: #ffda3d;
-}
-
-button {
-  cursor: pointer;
-}
-
-.quiz-btn {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #ffe066;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-}
-
-.quiz-btn:hover {
   background-color: #ffda3d;
 }
