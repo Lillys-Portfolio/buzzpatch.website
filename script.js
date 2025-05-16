@@ -84,6 +84,20 @@ function addBee() {
   const bee = document.createElement('span');
   bee.textContent = '🐝';
   bee.classList.add('bee');
+
+  // Need timer logic
+  const timer = setTimeout(() => {
+    bee.textContent = '😡'; // Angry face
+    bee.style.color = 'red';
+  }, 5000); // 5 seconds
+
+  // Reset timer if bee is clicked
+  bee.addEventListener('click', () => {
+    clearTimeout(timer);
+    bee.textContent = '🐝';
+    bee.style.color = 'black';
+  });
+
   garden.appendChild(bee);
 }
 
