@@ -2,41 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav id="mainNav" style="display: none;">
-    <button onclick="showSection('gardenSection')">🌼 Garden</button>
-    <button onclick="showSection('beedexSection')">📘 BeeDex</button>
-  </nav>
-
-  <div class="section active" id="loginSection">
-    <h1>🔐 Login</h1>
-    <form onsubmit="handleLogin(event)">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
+  <!-- Login Section -->
+  <section id="loginSection" class="section active">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <br />
       <button type="submit">Login</button>
     </form>
-    <p id="loginMessage" class="message"></p>
-  </div>
+    <p id="loginMessage"></p>
+  </section>
 
-  <div class="section" id="gardenSection">
-    <h1>🐝 BuzzPatch Bee Garden</h1>
-    <p>Click a bee to care for it!</p>
-    <div class="garden" id="garden"></div>
-    <div id="taskMenu">
-      <button class="task-btn" onclick="waterFlowers()">💧 Water</button>
-      <button class="task-btn" onclick="feedBees()">🍯 Feed</button>
-      <button class="task-btn" onclick="putBeesToSleep()">🌙 Sleep</button>
-    </div>
-    <div class="popup" id="beePopup"></div>
-  </div>
+  <!-- Garden + BeeDex Section -->
+  <section id="gardenSection" class="section">
+    <h2>Bee Garden</h2>
+    <div id="garden"></div>
+    <h2>BeeDex</h2>
+    <div id="beedexList"></div>
+    <button id="waterBtn">Water Flowers</button>
+    <button id="feedBtn">Feed Bees</button>
+    <button id="sleepBtn">Put Bees to Sleep</button>
+  </section>
 
-  <div class="section" id="beedexSection">
-    <h1>📘 Your BeeDex</h1>
-    <div class="beedex-grid" id="beedexList"></div>
+  <div id="beePopup" style="display:none; position:fixed; top:20%; left:50%; transform: translateX(-50%);
+    background:#fff; padding:20px; border:1px solid #333; z-index:100;">
+    <button onclick="closePopup()">Close</button>
+    <div id="popupContent"></div>
   </div>
 
   <script src="script.js"></script>
