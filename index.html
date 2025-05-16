@@ -1,60 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>BuzzPatch Bee Garden</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- LOGIN SCREEN -->
-  <section id="login-screen" class="screen active">
-    <h2>Login</h2>
-    <form id="login-form">
-      <label for="username">Username:</label><br/>
-      <input type="text" id="username" required /><br/><br/>
-      <label for="password">Password:</label><br/>
-      <input type="password" id="password" required /><br/><br/>
-      <button type="submit">Login</button>
-    </form>
-    <div id="login-error" class="error"></div>
-  </section>
-
-  <!-- FACTS & QUIZ SCREEN -->
-  <section id="facts-quiz-screen" class="screen">
-    <h2>Bee Facts & Quiz</h2>
-    <div id="bee-facts">
-      <ul>
-        <li>Bees communicate through dances.</li>
-        <li>Honey bees can recognize human faces.</li>
-        <li>Bees have five eyes.</li>
-      </ul>
+    <!-- Login Page -->
+    <div id="loginPage">
+        <h1>BuzzPatch Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="loginError" style="color: red;"></p>
     </div>
-    <h3>Quiz</h3>
-    <p>How many eyes does a bee have?</p>
-    <button class="quiz-btn" data-answer="correct">5</button>
-    <button class="quiz-btn" data-answer="wrong">2</button>
-    <button class="quiz-btn" data-answer="wrong">3</button>
-    <div id="quiz-feedback"></div>
-    <br />
-    <button id="to-garden-btn">Go to Bee Garden</button>
-    <br /><br />
-    <button id="logout-btn1">Logout</button>
-  </section>
 
-  <!-- BEE GARDEN SCREEN -->
-  <section id="bee-garden-screen" class="screen">
-    <h2>BuzzPatch Bee Garden</h2>
-    <div id="garden" class="garden"></div>
-    <div class="controls">
-      <button id="feed-bee">Feed Bee</button>
-      <button id="water-bee">Water Bee</button>
-      <button id="sleep-bee">Sleep Bee</button>
+    <!-- Facts and Quiz Page -->
+    <div id="factsPage" class="hidden">
+        <h2>Welcome to Bee Facts!</h2>
+        <p>Did you know? Bees communicate through dancing!</p>
+        <div id="quizCarousel">
+            <div class="quiz-slide active">What do bees collect? <br><button>Honey</button> <button>Nectar</button></div>
+            <div class="quiz-slide">How many eyes do bees have? <br><button>5</button> <button>2</button></div>
+            <div class="quiz-slide">What color are most bees? <br><button>Red</button> <button>Yellow</button></div>
+            <button onclick="prevQuestion()">Previous</button>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+        <button onclick="goToGarden()">Go to Bee Garden</button>
     </div>
-    <br />
-    <button id="logout-btn2">Logout</button>
-  </section>
 
-  <script src="script.js"></script>
+    <!-- Bee Garden -->
+    <div id="gardenPage" class="hidden">
+        <h2>Bee Garden</h2>
+        <div>
+            <button onclick="spawnBee('feed')">Feed</button>
+            <button onclick="spawnBee('water')">Water</button>
+            <button onclick="spawnBee('sleep')">Sleep</button>
+        </div>
+        <div id="garden"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
