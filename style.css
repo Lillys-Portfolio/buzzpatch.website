@@ -137,3 +137,48 @@ input, button {
   background-repeat: no-repeat;
   background-position: center;
 }
+/* added 16/05 */
+
+#quizSection {
+  padding: 20px;
+}
+
+#changingBee {
+  font-size: 48px;
+  animation: colorCycle 4s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes colorCycle {
+  0% { color: red; }
+  25% { color: orange; }
+  50% { color: green; }
+  75% { color: blue; }
+  100% { color: purple; }
+}
+
+#factArea {
+  font-size: 18px;
+  margin: 10px auto;
+  width: 80%;
+}
+
+#questionText {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#answersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+#answersContainer button {
+  padding: 8px 12px;
+  background-color: #ffe066;
+  border: 2px solid #4e342e;
+  cursor: pointer;
+}
