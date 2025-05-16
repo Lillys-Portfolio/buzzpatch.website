@@ -1,138 +1,139 @@
 body {
-  background-color: #d6f3f9;
-  font-family: Arial, sans-serif;
-  color: #4e342e;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+  background-color: #d6f3f9;
+  font-family: Arial, sans-serif;
+  color: #4e342e;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
- 
+
 nav {
-  background-color: #ffe066;
-  padding: 10px;
+  background-color: #ffe066;
+  padding: 10px;
 }
- 
+
 nav button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  margin: 0 15px;
-  cursor: pointer;
-  color: #4e342e;
-  font-weight: bold;
+  background: none;
+  border: none;
+  font-size: 16px;
+  margin: 0 15px;
+  cursor: pointer;
+  color: #4e342e;
+  font-weight: bold;
 }
- 
+
 .section {
-  display: none;
-  padding: 20px;
+  display: none;
+  padding: 20px;
 }
- 
+
 .active {
-  display: block;
+  display: block;
 }
- 
+
 .garden {
-  display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
 }
- 
+
 .plot {
-  background-color: #a8d5a0;
-  border: 2px solid #4e342e;
-  height: 100px;
-  width: 100px;
-  position: relative;
-  cursor: pointer;
+  background-color: #a8d5a0;
+  border: 2px solid #4e342e;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  cursor: pointer;
 }
- 
+
 .bee {
-  font-size: 24px;
-  position: absolute;
-  top: 10px;
-  left: 30px;
-  animation: buzz 3s infinite;
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  animation: buzz 3s infinite;
 }
- 
+
 .sleeping .bee::after {
-  content: '🌙';
-  position: absolute;
-  top: -10px;
-  left: 50px;
-  font-size: 18px;
+  content: '🌙';
+  position: absolute;
+  top: -10px;
+  left: 50px;
+  font-size: 18px;
 }
- 
+
 @keyframes buzz {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(2px, -2px); }
-  100% { transform: translate(0, 0); }
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(2px, -2px); }
+  100% { transform: translate(0, 0); }
 }
- 
+
 .task-btn {
-  background-color: #ffe066;
-  border: none;
-  margin: 10px;
-  padding: 10px 15px;
-  cursor: pointer;
+  background-color: #ffe066;
+  border: none;
+  margin: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
- 
+
 .popup {
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  padding: 20px;
-  border: 2px solid #4e342e;
-  display: none;
-  z-index: 10;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 20px;
+  border: 2px solid #4e342e;
+  display: none;
+  z-index: 10;
 }
- 
+
 .beedex-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
- 
+
 .beecard {
-  background: #e6e6fa;
-  border: 2px solid #4e342e;
-  padding: 10px;
-  width: 150px;
+  background: #e6e6fa;
+  border: 2px solid #4e342e;
+  padding: 10px;
+  width: 150px;
 }
- 
+
 input, button {
-  margin: 5px;
-  padding: 8px;
+  margin: 5px;
+  padding: 8px;
 }
- 
+
 .message {
-  font-weight: bold;
+  font-weight: bold;
 }
+
 .sleep-bar {
-  width: 80%;
-  height: 8px;
-  margin-top: 8px;
-  background-color: #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 0 auto;
+  width: 80%;
+  height: 8px;
+  margin-top: 8px;
+  background-color: #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
 }
- 
+
 .sleep-fill {
-  height: 100%;
-  width: 0%;
-  background-color: #4e342e;
-  transition: width 0.5s;
+  height: 100%;
+  width: 0%;
+  background-color: #4e342e;
+  transition: width 0.5s;
 }
- 
+
 .plot.flowered {
-  background-image: url('https://emojicdn.elk.sh/🌼'); /* optional flower emoji as background */
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-image: url('https://emojicdn.elk.sh/🌼');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
