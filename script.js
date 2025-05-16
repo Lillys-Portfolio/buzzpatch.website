@@ -1,47 +1,84 @@
+const loginForm = document.getElementById('login-form');
+const loginError = document.getElementById('login-error');
+
+const quizButtons = document.querySelectorAll('.quiz-btn');
+const quizFeedback = document.getElementById('quiz-feedback');
+
+const toGardenBtn = document.getElementById('to-garden-btn');
+
+const logoutBtn1 = document.getElementById('logout-btn1');
+const logoutBtn2 = document.getElementById('logout-btn2');
+
 const garden = document.getElementById('garden');
 
-function spawnBee() {
-  const bee = document.createElement('div');
-  bee.classList.add('bee');
-  bee.textContent = '🐝';
+const feedBeeBtn = document.getElementById('feed-bee');
+const waterBeeBtn = document.getElementById('water-bee');
+const sleepBeeBtn = document.getElementById('sleep-bee');
 
-  const maxX = garden.clientWidth - 30;
-  const maxY = garden.clientHeight - 30;
+// Simple login validation
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const username = loginForm.username.value.trim();
+  const password = loginForm.password.value.trim();
 
-  const x = Math.floor(Math.random() * maxX);
-  const y = Math.floor(Math.random() * maxY);
+  // For demo: username=user, password=pass
+  if (username === 'user' && password === 'pass') {
+    loginError.textContent = '';
+    showScreen(factsQuizScreen);
+  } else {
+    loginError.textContent = 'Invalid username or password.';
+  }
+});
 
-  bee.style.left = x + 'px';
-  bee.style.top = y + 'px';
-
-  // Need bar element
-  const needBar = document.createElement('div');
-  needBar.classList.add('need-bar');
-  needBar.style.width = '100%';
-  bee.appendChild(needBar);
-
-  garden.appendChild(bee);
-
-  // Timer: decrease need bar every 100ms
-  let needPercent = 100;
-  const decreaseRate = 0.5; // 0.5% per 100ms = 50 seconds total
-
-  const intervalId = setInterval(() => {
-    needPercent -= decreaseRate;
-    if (needPercent <= 0) {
-      needPercent = 0;
-      clearInterval(intervalId);
-      // Angry bee style - red color and angry face
-      bee.textContent = '😡';
-      needBar.style.backgroundColor = 'red';
+// Quiz buttons event
+quizButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.dataset.answer === 'correct') {
+      quizFeedback.textContent = 'Correct! Bees have five eyes.';
+      quizFeedback.style.color = 'green';
+    } else {
+      quizFeedback.textContent = 'Wrong, try again.';
+      quizFeedback.style.color = 'red';
     }
-    needBar.style.width = needPercent + '%';
-  }, 100);
+  });
+});
 
-  // Store intervalId for future use if needed
-  bee.dataset.intervalId = intervalId;
+// Go to bee garden button
+toGardenBtn.addEventListener('click', () => {
+  quizFeedback.textContent = ''; // Clear feedback
+  showScreen(beeGardenScreen);
+});
+
+// Logout buttons
+logoutBtn1.addEventListener('click', () => {
+  showScreen(loginScreen);
+  loginForm.reset();
+  quizFeedback.textContent = '';
+  garden.innerHTML = ''; // Clear garden bees on logout
+});
+logoutBtn2.addEventListener('click', () => {
+  showScreen(loginScreen);
+  loginForm.reset();
+  quizFeedback.textContent = '';
+  garden.innerHTML = '';
+});
+
+// Screen switch helper
+function showScreen(screenToShow) {
+  [loginScreen, factsQuizScreen, beeGardenScreen].forEach(screen =>
+    screen.classList.remove('active')
+  );
+  screenToShow.classList.add('active');
 }
 
-// Spawn a bee every 4 seconds
-setInterval(spawnBee, 4000);
-spawnBee();
+// Add bee to garden
+function addBee() {
+  const bee = document.createElement('span');
+  bee.textContent = '🐝';
+  bee.classList.add('bee');
+  garden.appendChild(bee);
+}
+
+feedBeeBtn.addEventListener('click', addBee);
+waterBeeBtn.addEventListener('click', addBee);
+sleepBeeBtn.addEventListener('click', addBee);
