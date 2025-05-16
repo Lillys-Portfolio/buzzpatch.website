@@ -43,7 +43,6 @@ function createGarden() {
       plot.appendChild(bee);
       plot.appendChild(sleepBar);
 
-      // BeeDex
       const card = document.createElement("div");
       card.className = "beecard";
       card.innerHTML = `<p>🐝 <strong>${name}</strong></p><p>Mood: ${mood}</p>`;
@@ -58,8 +57,7 @@ function createGarden() {
 
 function showPopup(name, mood) {
   const popup = document.getElementById("beePopup");
-  const content = document.getElementById("popupContent");
-  content.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p>`;
+  popup.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p><button onclick="closePopup()">Close</button>`;
   popup.style.display = "block";
 }
 
@@ -117,19 +115,7 @@ function plantFlower(plot) {
 
 function handleLogin(event) {
   event.preventDefault();
-  const username = event.target.username.value.trim();
-  const password = event.target.password.value.trim();
-
-  if (username === "beeuser" && password === "buzz123") {
-    document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
-    showSection("gardenSection");
-    createGarden();
-  } else {
-    document.getElementById("loginMessage").innerText = "❌ Invalid username or password.";
-  }
+  document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
 }
 
-document.getElementById("loginForm").addEventListener("submit", handleLogin);
-document.getElementById("waterBtn").addEventListener("click", waterFlowers);
-document.getElementById("feedBtn").addEventListener("click", feedBees);
-document.getElementById("sleepBtn").addEventListener("click", putBeesToSleep);
+createGarden();
