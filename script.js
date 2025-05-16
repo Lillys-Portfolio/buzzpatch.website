@@ -1,89 +1,32 @@
-// Screen references
-const loginScreen = document.getElementById('login-screen');
-const factsQuizScreen = document.getElementById('facts-quiz-screen');
-const beeGardenScreen = document.getElementById('bee-garden-screen');
-
-const loginForm = document.getElementById('login-form');
-const loginError = document.getElementById('login-error');
-
-const quizButtons = document.querySelectorAll('.quiz-btn');
-const quizFeedback = document.getElementById('quiz-feedback');
-
-const toGardenBtn = document.getElementById('to-garden-btn');
-
-const logoutBtn1 = document.getElementById('logout-btn1');
-const logoutBtn2 = document.getElementById('logout-btn2');
-
 const garden = document.getElementById('garden');
 
-const feedBeeBtn = document.getElementById('feed-bee');
-const waterBeeBtn = document.getElementById('water-bee');
-const sleepBeeBtn = document.getElementById('sleep-bee');
-
-// Simple login validation
-loginForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const username = loginForm.username.value.trim();
-  const password = loginForm.password.value.trim();
-
-  // For demo: username=user, password=pass
-  if (username === 'user' && password === 'pass') {
-    loginError.textContent = '';
-    showScreen(factsQuizScreen);
-  } else {
-    loginError.textContent = 'Invalid username or password.';
-  }
-});
-
-// Quiz buttons event
-quizButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.answer === 'correct') {
-      quizFeedback.textContent = 'Correct! Bees have five eyes.';
-      quizFeedback.style.color = 'green';
-    } else {
-      quizFeedback.textContent = 'Wrong, try again.';
-      quizFeedback.style.color = 'red';
-    }
-  });
-});
-
-// Go to bee garden button
-toGardenBtn.addEventListener('click', () => {
-  quizFeedback.textContent = ''; // Clear feedback
-  showScreen(beeGardenScreen);
-});
-
-// Logout buttons
-logoutBtn1.addEventListener('click', () => {
-  showScreen(loginScreen);
-  loginForm.reset();
-  quizFeedback.textContent = '';
-  garden.innerHTML = ''; // Clear garden bees on logout
-});
-logoutBtn2.addEventListener('click', () => {
-  showScreen(loginScreen);
-  loginForm.reset();
-  quizFeedback.textContent = '';
-  garden.innerHTML = '';
-});
-
-// Screen switch helper
-function showScreen(screenToShow) {
-  [loginScreen, factsQuizScreen, beeGardenScreen].forEach(screen =>
-    screen.classList.remove('active')
-  );
-  screenToShow.classList.add('active');
-}
-
-// Add bee to garden
-function addBee() {
-  const bee = document.createElement('span');
-  bee.textContent = '🐝';
+function spawnBee() {
+  const bee = document.createElement('div');
   bee.classList.add('bee');
+  bee.textContent = '🐝';
+
+  // Random position inside the garden
+  const maxX = garden.clientWidth - 30; // bee approx 30px
+  const maxY = garden.clientHeight - 30;
+
+  const x = Math.floor(Math.random() * maxX);
+  const y = Math.floor(Math.random() * maxY);
+
+  bee.style.left = x + 'px';
+  bee.style.top = y + 'px';
+
+  // Create need bar element
+  const needBar = document.createElement('div');
+  needBar.classList.add('need-bar');
+  needBar.style.width = '100%'; // start full
+
+  bee.appendChild(needBar);
+
   garden.appendChild(bee);
 }
 
-feedBeeBtn.addEventListener('click', addBee);
-waterBeeBtn.addEventListener('click', addBee);
-sleepBeeBtn.addEventListener('click', addBee);
+// Spawn a bee every 4 seconds
+setInterval(spawnBee, 4000);
+
+// Spawn initial bee immediately
+spawnBee();
