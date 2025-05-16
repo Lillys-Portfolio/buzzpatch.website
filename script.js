@@ -43,6 +43,7 @@ function createGarden() {
       plot.appendChild(bee);
       plot.appendChild(sleepBar);
 
+      // BeeDex
       const card = document.createElement("div");
       card.className = "beecard";
       card.innerHTML = `<p>🐝 <strong>${name}</strong></p><p>Mood: ${mood}</p>`;
@@ -71,6 +72,19 @@ function waterFlowers() {
 
 function feedBees() {
   alert("🍯 You fed the bees!");
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+  const username = event.target[0].value.trim();
+  const password = event.target[1].value.trim();
+
+  if (username === "beeuser" && password === "buzz123") {
+    document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
+    showSection("gardenSection");
+  } else {
+    document.getElementById("loginMessage").innerText = "❌ Invalid username or password.";
+  }
 }
 
 function putBeesToSleep() {
@@ -113,23 +127,4 @@ function plantFlower(plot) {
   }
 }
 
-function handleLogin(event) {
-  event.preventDefault();
-
-  // Optional: simple check
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value.trim();
-
-  if (username && password) {
-    document.getElementById("loginMessage").innerText = "✅ Login successful!";
-    setTimeout(() => {
-      // Hide login section, show nav and garden
-      document.getElementById("loginSection").style.display = "none";
-      document.getElementById("mainNav").style.display = "block";
-      showSection('gardenSection');
-      createGarden();
-    }, 800);
-  } else {
-    document.getElementById("loginMessage").innerText = "❌ Please enter valid details.";
-  }
-}
+createGarden();
