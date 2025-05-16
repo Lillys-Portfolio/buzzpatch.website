@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <nav>
     <button onclick="showSection('gardenSection')">🌼 Garden</button>
     <button onclick="showSection('beedexSection')">📘 BeeDex</button>
@@ -38,6 +39,17 @@
       <button type="submit">Login</button>
     </form>
     <p id="loginMessage" class="message"></p>
+  </div>
+
+  <!-- 🔥 New Bee Quiz + Facts Section as of 16/05 -->
+  <div class="section" id="quizSection">
+    <h1>🐝 Bee Facts & Quiz</h1>
+    <div id="changingBee">🐝</div>
+    <div id="factArea"></div>
+    <div id="questionArea">
+      <p id="questionText"></p>
+      <div id="answersContainer"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>
