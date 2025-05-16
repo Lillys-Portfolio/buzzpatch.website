@@ -2,57 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- LOGIN SCREEN -->
-  <section id="login-screen" class="screen active">
-    <h2>Login</h2>
-    <form id="login-form">
-      <label for="username">Username:</label><br/>
-      <input type="text" id="username" required /><br/><br/>
-      <label for="password">Password:</label><br/>
-      <input type="password" id="password" required /><br/><br/>
-      <button type="submit">Login</button>
-    </form>
-    <div id="login-error" class="error"></div>
+  <!-- Login Section -->
+  <section id="loginSection">
+    <h1>Welcome to BuzzPatch!</h1>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p id="loginError"></p>
   </section>
 
-  <!-- FACTS & QUIZ SCREEN -->
-  <section id="facts-quiz-screen" class="screen">
-    <h2>Bee Facts & Quiz</h2>
-    <div id="bee-facts">
-      <ul>
-        <li>Bees communicate through dances.</li>
-        <li>Honey bees can recognize human faces.</li>
-        <li>Bees have five eyes.</li>
-      </ul>
-    </div>
-    <h3>Quiz</h3>
-    <p>How many eyes does a bee have?</p>
-    <button class="quiz-btn" data-answer="correct">5</button>
-    <button class="quiz-btn" data-answer="wrong">2</button>
-    <button class="quiz-btn" data-answer="wrong">3</button>
-    <div id="quiz-feedback"></div>
-    <br />
-    <button id="to-garden-btn">Go to Bee Garden</button>
-    <br /><br />
-    <button id="logout-btn1">Logout</button>
+  <!-- Facts and Quiz Section -->
+  <section id="factQuizSection" style="display: none;">
+    <h2>Bee Facts</h2>
+    <ul>
+      <li>Bees communicate through dancing.</li>
+      <li>They pollinate 80% of flowering plants.</li>
+      <li>Bees have five eyes!</li>
+    </ul>
+    <h2>Mini Quiz</h2>
+    <p>Q: How many eyes do bees have?</p>
+    <button onclick="alert('Correct!')">5</button>
+    <button onclick="alert('Try again!')">2</button>
+    <button onclick="goToGarden()">Go to Bee Garden</button>
   </section>
 
-  <!-- BEE GARDEN SCREEN -->
-  <section id="bee-garden-screen" class="screen">
+  <!-- Bee Garden Section -->
+  <section id="beeGarden" style="display: none;">
     <h2>BuzzPatch Bee Garden</h2>
-    <div id="garden" class="garden"></div>
-    <div class="controls">
-      <button id="feed-bee">Feed Bee</button>
-      <button id="water-bee">Water Bee</button>
-      <button id="sleep-bee">Sleep Bee</button>
+    <div class="button-bar">
+      <button id="feedBtn">Feed Bee</button>
+      <button id="waterBtn">Water Bee</button>
+      <button id="sleepBtn">Sleep Bee</button>
     </div>
-    <br />
-    <button id="logout-btn2">Logout</button>
+    <div id="garden" class="garden"></div>
   </section>
 
   <script src="script.js"></script>
