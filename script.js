@@ -58,7 +58,8 @@ function createGarden() {
 
 function showPopup(name, mood) {
   const popup = document.getElementById("beePopup");
-  popup.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p><button onclick="closePopup()">Close</button>`;
+  const content = document.getElementById("popupContent");
+  content.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p>`;
   popup.style.display = "block";
 }
 
@@ -72,19 +73,6 @@ function waterFlowers() {
 
 function feedBees() {
   alert("🍯 You fed the bees!");
-}
-
-function handleLogin(event) {
-  event.preventDefault();
-  const username = event.target[0].value.trim();
-  const password = event.target[1].value.trim();
-
-  if (username === "beeuser" && password === "buzz123") {
-    document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
-    showSection("gardenSection");
-  } else {
-    document.getElementById("loginMessage").innerText = "❌ Invalid username or password.";
-  }
 }
 
 function putBeesToSleep() {
@@ -127,4 +115,21 @@ function plantFlower(plot) {
   }
 }
 
-createGarden();
+function handleLogin(event) {
+  event.preventDefault();
+  const username = event.target.username.value.trim();
+  const password = event.target.password.value.trim();
+
+  if (username === "beeuser" && password === "buzz123") {
+    document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
+    showSection("gardenSection");
+    createGarden();
+  } else {
+    document.getElementById("loginMessage").innerText = "❌ Invalid username or password.";
+  }
+}
+
+document.getElementById("loginForm").addEventListener("submit", handleLogin);
+document.getElementById("waterBtn").addEventListener("click", waterFlowers);
+document.getElementById("feedBtn").addEventListener("click", feedBees);
+document.getElementById("sleepBtn").addEventListener("click", putBeesToSleep);
