@@ -4,7 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d6f3f9; /* sky blue */
+      color: #333;
+      padding: 20px;
+    }
+    .screen {
+      display: none;
+    }
+    .screen.active {
+      display: block;
+    }
+    #garden {
+      margin-top: 20px;
+      min-height: 200px;
+      border: 2px solid #a8d5a0; /* garden leaf green */
+      padding: 10px;
+      background-color: #ffe066; /* soft honey yellow */
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      background-color: #a8d5a0;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #8cc287;
+    }
+  </style>
 </head>
 <body>
 
@@ -12,8 +45,8 @@
   <div id="login-screen" class="screen active">
     <h2>Login</h2>
     <form id="login-form">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
+      <input type="text" name="username" placeholder="Username" required /><br /><br />
+      <input type="password" name="password" placeholder="Password" required /><br /><br />
       <button type="submit">Log In</button>
       <p id="login-error" style="color: red;"></p>
     </form>
@@ -23,10 +56,18 @@
   <div id="facts-quiz-screen" class="screen">
     <h2>Bee Facts & Quiz</h2>
     <div id="facts">
-      <!-- Bee facts will go here -->
+      <ul>
+        <li>Bees communicate through dances.</li>
+        <li>Honey bees can recognize human faces.</li>
+        <li>Bees have five eyes.</li>
+      </ul>
     </div>
     <div id="quiz">
-      <!-- Quiz questions will go here -->
+      <p><strong>Quiz:</strong> How many eyes does a bee have?</p>
+      <button data-answer="correct">5</button>
+      <button data-answer="wrong">2</button>
+      <button data-answer="wrong">3</button>
+      <p id="quiz-feedback"></p>
     </div>
     <button id="go-to-garden">Go to Bee Garden</button>
   </div>
@@ -40,11 +81,68 @@
       <button id="sleep-bee">Put Bee to Sleep</button>
     </div>
     <div id="garden">
-      <!-- Garden patches here -->
+      <p>Click controls to add bees. Click empty space to add flowers.</p>
     </div>
     <button id="logout">Logout</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Screen references
+    const loginScreen = document.getElementById('login-screen');
+    const factsQuizScreen = document.getElementById('facts-quiz-screen');
+    const beeGardenScreen = document.getElementById('bee-garden-screen');
+
+    // Login form
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = loginForm.username.value.trim();
+      const password = loginForm.password.value.trim();
+
+      // Dummy login validation (accept username 'bee' and password 'garden')
+      if(username === 'bee' && password === 'garden') {
+        loginError.textContent = '';
+        showScreen(factsQuizScreen);
+      } else {
+        loginError.textContent = 'Incorrect username or password';
+      }
+    });
+
+    // Quiz buttons
+    const quizButtons = document.querySelectorAll('#quiz button');
+    const quizFeedback = document.getElementById('quiz-feedback');
+
+    quizButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if(btn.dataset.answer === 'correct') {
+          quizFeedback.textContent = 'Correct! Well done.';
+        } else {
+          quizFeedback.textContent = 'Oops, try again!';
+        }
+      });
+    });
+
+    // Go to garden button
+    document.getElementById('go-to-garden').addEventListener('click', () => {
+      showScreen(beeGardenScreen);
+    });
+
+    // Logout button
+    document.getElementById('logout').addEventListener('click', () => {
+      showScreen(loginScreen);
+      loginForm.reset();
+      quizFeedback.textContent = '';
+    });
+
+    // Show screen helper
+    function showScreen(screenToShow) {
+      [loginScreen, factsQuizScreen, beeGardenScreen].forEach(screen => {
+        screen.classList.remove('active');
+      });
+      screenToShow.classList.add('active');
+    }
+  </script>
 </body>
 </html>
