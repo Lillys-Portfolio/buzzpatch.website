@@ -4,49 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
-  <section id="login-screen" class="screen active">
-    <h2>Login to BuzzPatch</h2>
+  <!-- Login Screen -->
+  <div id="login-screen" class="screen active">
+    <h2>Login</h2>
     <form id="login-form">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Login</button>
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Log In</button>
+      <p id="login-error" style="color: red;"></p>
     </form>
-    <p id="login-error" class="error-message"></p>
-  </section>
+  </div>
 
-  <!-- MAIN APP -->
-  <section id="app-screen" class="screen">
-
-    <nav class="nav-bar">
-      <button id="btn-garden" class="nav-btn active">Bee Garden</button>
-      <button id="btn-facts" class="nav-btn">Facts & Quiz</button>
-      <button id="btn-logout" class="nav-btn logout-btn">Logout</button>
-    </nav>
-
-    <!-- BEE GARDEN -->
-    <div id="bee-garden" class="app-section active">
-      <h2>BuzzPatch Bee Garden</h2>
-      <div class="controls">
-        <button id="feed-btn">Feed</button>
-        <button id="water-btn">Water</button>
-        <button id="sleep-btn">Put to Sleep</button>
-      </div>
-      <div id="garden-grid"></div>
+  <!-- Facts & Quiz Screen -->
+  <div id="facts-quiz-screen" class="screen">
+    <h2>Bee Facts & Quiz</h2>
+    <div id="facts">
+      <!-- Bee facts will go here -->
     </div>
-
-    <!-- FACTS & QUIZ -->
-    <div id="facts-quiz" class="app-section">
-      <h2>Bee Facts & Quiz</h2>
-      <div id="facts-container"></div>
-      <div id="quiz-container"></div>
+    <div id="quiz">
+      <!-- Quiz questions will go here -->
     </div>
+    <button id="go-to-garden">Go to Bee Garden</button>
+  </div>
 
-  </section>
+  <!-- Bee Garden Screen -->
+  <div id="bee-garden-screen" class="screen">
+    <h2>Bee Garden</h2>
+    <div id="controls">
+      <button id="feed-bee">Feed Bee</button>
+      <button id="water-bee">Water Bee</button>
+      <button id="sleep-bee">Put Bee to Sleep</button>
+    </div>
+    <div id="garden">
+      <!-- Garden patches here -->
+    </div>
+    <button id="logout">Logout</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
