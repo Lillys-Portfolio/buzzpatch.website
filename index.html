@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuzzPatch Bee Garden</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-  <nav>
-    <button onclick="showSection('gardenSection')">🌼 Garden</button>
-    <button onclick="showSection('beedexSection')">📘 BeeDex</button>
-    <button onclick="showSection('loginSection')">🔐 Login</button>
-  </nav>
- 
-  <div class="section active" id="gardenSection">
-    <h1>🐝 BuzzPatch Bee Garden</h1>
-    <p>Click a bee to care for it!</p>
-    <div class="garden" id="garden"></div>
-    <div id="taskMenu">
-      <button class="task-btn" onclick="waterFlowers()">💧 Water</button>
-      <button class="task-btn" onclick="feedBees()">🍯 Feed</button>
-      <button class="task-btn" onclick="putBeesToSleep()">🌙 Sleep</button>
-    </div>
-    <div class="popup" id="beePopup"></div>
-  </div>
- 
-  <div class="section" id="beedexSection">
-    <h1>📘 Your BeeDex</h1>
-    <div class="beedex-grid" id="beedexList">
-      <!-- Dynamically filled by JavaScript -->
-    </div>
-  </div>
- 
-  <div class="section" id="loginSection">
-    <h1>🔐 Login</h1>
-    <form onsubmit="handleLogin(event)">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <p id="loginMessage" class="message"></p>
-  </div>
- 
-  <script src="script.js"></script>
+  <nav>
+    <button onclick="showSection('gardenSection')">🌼 Garden</button>
+    <button onclick="showSection('beedexSection')">📘 BeeDex</button>
+    <button onclick="showSection('loginSection')">🔐 Login</button>
+  </nav>
+
+  <div class="section active" id="gardenSection">
+    <h1>🐝 BuzzPatch Bee Garden</h1>
+    <p>Click a bee to care for it!</p>
+    <div class="garden" id="garden"></div>
+    <div id="taskMenu">
+      <button class="task-btn" onclick="waterFlowers()">💧 Water</button>
+      <button class="task-btn" onclick="feedBees()">🍯 Feed</button>
+      <button class="task-btn" onclick="putBeesToSleep()">🌙 Sleep</button>
+    </div>
+    <div class="popup" id="beePopup"></div>
+  </div>
+
+  <div class="section" id="beedexSection">
+    <h1>📘 Your BeeDex</h1>
+    <div class="beedex-grid" id="beedexList"></div>
+  </div>
+
+  <div class="section" id="loginSection">
+    <h1>🔐 Login</h1>
+    <form onsubmit="handleLogin(event)">
+      <input type="text" placeholder="Username" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="loginMessage" class="message"></p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
