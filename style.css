@@ -1,40 +1,249 @@
+/* style.css - BuzzPatch Bee Garden themed */
+
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #d6f3f9; /* Sky Blue */
+  color: #2e4a23; /* Dark Garden Leaf Green for text */
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #d6f3f9;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #a87e00; /* darker Honey Yellow */
   text-align: center;
 }
-nav {
-  background: #ffe066;
-  padding: 10px;
-}
-nav button {
-  margin: 5px;
-  background: #a8d5a0;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-section {
+
+.screen {
   display: none;
+  width: 100%;
+  max-width: 600px;
   padding: 20px;
+  box-sizing: border-box;
 }
-section.active {
+
+.screen.active {
   display: block;
 }
-#gardenArea {
-  height: 200px;
-  background: #a8d5a0;
-  margin: 10px;
-  position: relative;
+
+#error-message,
+.error-message {
+  color: #cc3300; /* reddish for errors */
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
 }
-.enemyBee {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: red;
-  color: white;
+
+#login-screen form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: 40px auto;
+}
+
+#login-screen input {
   padding: 10px;
-  border-radius: 50%;
+  font-size: 1rem;
+  border: 2px solid #a8d5a0; /* Garden Leaf Green */
+  border-radius: 5px;
+  background: #f6f9f8;
+}
+
+#login-screen button {
+  padding: 10px;
+  background: #ffe066; /* Soft Honey Yellow */
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  color: #4d3700; /* Dark Honey Yellow brown */
+}
+
+#login-screen button:hover {
+  background: #d4b500;
+  color: white;
+}
+
+/* NAVIGATION */
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  background: #a8d5a0; /* Garden Leaf Green */
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: #2e4a23; /* dark green text */
+}
+
+.nav-btn.active {
+  background: #ffe066; /* Soft Honey Yellow */
+  color: #4d3700; /* Dark Honey Yellow */
+}
+
+.nav-btn:hover {
+  background: #d4b500;
+  color: white;
+}
+
+.logout-btn {
+  margin-left: auto;
+  background: #cc3300; /* Strong red */
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #a62700;
+}
+
+/* BEE GARDEN */
+#bee-garden {
+  text-align: center;
+}
+
+.controls {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.controls button {
+  padding: 10px 15px;
+  border: none;
+  background: #a8d5a0; /* Garden Leaf Green */
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2e4a23;
+  transition: background 0.3s ease;
+}
+
+.controls button:hover {
+  background: #d4b500; /* golden yellow */
+  color: white;
+}
+
+/* Garden grid */
+#garden-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 80px);
+  grid-gap: 15px;
+  justify-content: center;
+}
+
+.patch {
+  width: 80px;
+  height: 80px;
+  background: #a8d5a0; /* Garden Leaf Green */
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: inset 0 0 8px #6a8e58;
+  transition: background 0.3s ease;
+}
+
+.patch.flower {
+  background: #ffe066; /* Soft Honey Yellow */
+}
+
+.bee {
+  width: 40px;
+  height: 40px;
+  background: url('https://i.imgur.com/qO5KQzW.png') no-repeat center/contain;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: filter 0.3s ease;
+}
+
+.bee.angry {
+  filter: hue-rotate(-40deg) saturate(2);
+}
+
+.need-bar {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  width: 60px;
+  height: 8px;
+  background: #f1e39f; /* pale yellow */
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.need-fill {
+  height: 100%;
+  background: #d4b500; /* golden yellow */
+  transition: width 0.3s linear;
+}
+
+/* FACTS & QUIZ */
+#facts-container {
+  background: #a8d5a0; /* Garden Leaf Green */
+  padding: 15px;
+  border-radius: 12px;
+  color: #2e4a23;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+#facts-container h3 {
+  margin-top: 0;
+}
+
+#quiz-container {
+  background: #ffe066; /* Soft Honey Yellow */
+  padding: 15px;
+  border-radius: 12px;
+  color: #4d3700; /* darker honey yellow */
+}
+
+.quiz-question {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.quiz-options {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-options li {
+  margin-bottom: 8px;
+}
+
+.quiz-options button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #a8d5a0; /* Garden Leaf Green */
+  font-weight: 600;
+  color: #2e4a23;
+  transition: background 0.3s ease;
+}
+
+.quiz-options button:hover {
+  background: #d4b500; /* golden yellow */
+  color: white;
+}
+
+.quiz-feedback {
+  margin-top: 10px;
+  font-weight: 700;
 }
