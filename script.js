@@ -1,121 +1,89 @@
-const beeNames = [
-  "Saul Stinger", "Heisenbuzz", "Beezefeld", "StingRay", "Bumbleina",
-  "Honeycomb", "Zzzara", "PollenPaul", "Waggle", "SunDancer",
-  "Nectarine", "Dr. Buzz", "Guz Fly", "Amberwing"
-];
-const moods = ["Happy", "Hungry", "Sleepy", "Excited", "Lazy"];
-let sleepIntervals = {};
+// Screen references
+const loginScreen = document.getElementById('login-screen');
+const factsQuizScreen = document.getElementById('facts-quiz-screen');
+const beeGardenScreen = document.getElementById('bee-garden-screen');
 
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+const loginForm = document.getElementById('login-form');
+const loginError = document.getElementById('login-error');
 
-function createGarden() {
-  const garden = document.getElementById("garden");
-  const beedex = document.getElementById("beedexList");
-  garden.innerHTML = "";
-  beedex.innerHTML = "";
+const quizButtons = document.querySelectorAll('.quiz-btn');
+const quizFeedback = document.getElementById('quiz-feedback');
 
-  for (let i = 0; i < 12; i++) {
-    const plot = document.createElement("div");
-    plot.className = "plot";
-    plot.dataset.index = i;
+const toGardenBtn = document.getElementById('to-garden-btn');
 
-    if (Math.random() > 0.25) {
-      const bee = document.createElement("div");
-      bee.className = "bee";
+const logoutBtn1 = document.getElementById('logout-btn1');
+const logoutBtn2 = document.getElementById('logout-btn2');
 
-      const name = beeNames[i % beeNames.length];
-      const mood = moods[Math.floor(Math.random() * moods.length)];
+const garden = document.getElementById('garden');
 
-      bee.innerText = "🐝";
-      bee.title = `${name} - ${mood}`;
-      bee.onclick = () => showPopup(name, mood);
+const feedBeeBtn = document.getElementById('feed-bee');
+const waterBeeBtn = document.getElementById('water-bee');
+const sleepBeeBtn = document.getElementById('sleep-bee');
 
-      const sleepBar = document.createElement("div");
-      sleepBar.className = "sleep-bar";
-      const fill = document.createElement("div");
-      fill.className = "sleep-fill";
-      fill.style.width = "0%";
-      sleepBar.appendChild(fill);
+// Simple login validation
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const username = loginForm.username.value.trim();
+  const password = loginForm.password.value.trim();
 
-      plot.appendChild(bee);
-      plot.appendChild(sleepBar);
-
-      const card = document.createElement("div");
-      card.className = "beecard";
-      card.innerHTML = `<p>🐝 <strong>${name}</strong></p><p>Mood: ${mood}</p>`;
-      beedex.appendChild(card);
-    } else {
-      plot.onclick = () => plantFlower(plot);
-    }
-
-    garden.appendChild(plot);
+  // For demo: username=user, password=pass
+  if (username === 'user' && password === 'pass') {
+    loginError.textContent = '';
+    showScreen(factsQuizScreen);
+  } else {
+    loginError.textContent = 'Invalid username or password.';
   }
-}
+});
 
-function showPopup(name, mood) {
-  const popup = document.getElementById("beePopup");
-  popup.innerHTML = `<h2>${name}</h2><p>Mood: ${mood}</p><button onclick="closePopup()">Close</button>`;
-  popup.style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("beePopup").style.display = "none";
-}
-
-function waterFlowers() {
-  alert("💧 You watered the flowers!");
-}
-
-function feedBees() {
-  alert("🍯 You fed the bees!");
-}
-
-function putBeesToSleep() {
-  const plots = document.querySelectorAll(".plot");
-  plots.forEach((plot, index) => {
-    const bee = plot.querySelector(".bee");
-    const fill = plot.querySelector(".sleep-fill");
-
-    if (bee && fill) {
-      bee.classList.add("sleeping");
-      bee.parentElement.classList.add("sleeping");
-
-      let percent = 0;
-      if (sleepIntervals[index]) clearInterval(sleepIntervals[index]);
-
-      sleepIntervals[index] = setInterval(() => {
-        if (percent < 100) {
-          percent += 10;
-          fill.style.width = `${percent}%`;
-        } else {
-          clearInterval(sleepIntervals[index]);
-          bee.classList.remove("sleeping");
-          plot.classList.remove("sleeping");
-          fill.style.width = "0%";
-        }
-      }, 500);
+// Quiz buttons event
+quizButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.dataset.answer === 'correct') {
+      quizFeedback.textContent = 'Correct! Bees have five eyes.';
+      quizFeedback.style.color = 'green';
+    } else {
+      quizFeedback.textContent = 'Wrong, try again.';
+      quizFeedback.style.color = 'red';
     }
   });
+});
 
-  alert("🌙 Bees are sleeping...");
+// Go to bee garden button
+toGardenBtn.addEventListener('click', () => {
+  quizFeedback.textContent = ''; // Clear feedback
+  showScreen(beeGardenScreen);
+});
+
+// Logout buttons
+logoutBtn1.addEventListener('click', () => {
+  showScreen(loginScreen);
+  loginForm.reset();
+  quizFeedback.textContent = '';
+  garden.innerHTML = ''; // Clear garden bees on logout
+});
+logoutBtn2.addEventListener('click', () => {
+  showScreen(loginScreen);
+  loginForm.reset();
+  quizFeedback.textContent = '';
+  garden.innerHTML = '';
+});
+
+// Screen switch helper
+function showScreen(screenToShow) {
+  [loginScreen, factsQuizScreen, beeGardenScreen].forEach(screen =>
+    screen.classList.remove('active')
+  );
+  screenToShow.classList.add('active');
 }
 
-function plantFlower(plot) {
-  if (!plot.classList.contains("flowered")) {
-    plot.classList.add("flowered");
-    plot.onclick = null;
-    alert("🌼 You planted a flower!");
-  } else {
-    alert("🌼 There's already a flower here!");
-  }
+// Add bee to garden
+function addBee() {
+  const bee = document.createElement('span');
+  bee.textContent = '🐝';
+  bee.classList.add('bee');
+  garden.appendChild(bee);
 }
 
-function handleLogin(event) {
-  event.preventDefault();
-  document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
-}
-
-createGarden();
+feedBeeBtn.addEventListener('click', addBee);
+waterBeeBtn.addEventListener('click', addBee);
+sleepBeeBtn.addEventListener('click', addBee);
