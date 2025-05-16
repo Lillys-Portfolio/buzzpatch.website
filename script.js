@@ -119,3 +119,77 @@ function handleLogin(event) {
 }
 
 createGarden();
+
+const facts = [
+  "Bees communicate by dancing!",
+  "There are over 20,000 species of bees.",
+  "Bees have five eyes.",
+  "Bees beat their wings 200 times per second.",
+  "Only female bees can sting."
+];
+
+const quizQuestions = [
+  {
+    question: "How many eyes do bees have?",
+    answers: ["2", "3", "5", "8"],
+    correct: "5"
+  },
+  {
+    question: "What do bees use to communicate?",
+    answers: ["Wings", "Dancing", "Buzzing", "Nods"],
+    correct: "Dancing"
+  },
+  {
+    question: "Which bees can sting?",
+    answers: ["Males", "Females", "Both", "None"],
+    correct: "Females"
+  }
+];
+
+function handleLogin(event) {
+  event.preventDefault();
+  document.getElementById("loginMessage").innerText = "✅ You are now logged in!";
+  showSection("quizSection");
+  showFact();
+  showQuestion();
+}
+
+function showFact() {
+  const factArea = document.getElementById("factArea");
+  const randomFact = facts[Math.floor(Math.random() * facts.length)];
+  factArea.innerText = `🐝 Fact: ${randomFact}`;
+}
+
+let currentQuestionIndex = 0;
+
+function showQuestion() {
+  const q = quizQuestions[currentQuestionIndex];
+  document.getElementById("questionText").innerText = q.question;
+
+  const answersDiv = document.getElementById("answersContainer");
+  answersDiv.innerHTML = "";
+
+  q.answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.innerText = answer;
+    btn.onclick = () => checkAnswer(answer);
+    answersDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected) {
+  const correct = quizQuestions[currentQuestionIndex].correct;
+  if (selected === correct) {
+    alert("✅ Correct!");
+  } else {
+    alert("❌ Oops! Try again.");
+  }
+
+  currentQuestionIndex++;
+  if (currentQuestionIndex < quizQuestions.length) {
+    showQuestion();
+  } else {
+    document.getElementById("questionText").innerText = "🎉 Quiz Complete!";
+    document.getElementById("answersContainer").innerHTML = "";
+  }
+}
