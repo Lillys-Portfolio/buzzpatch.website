@@ -3,40 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="style.css">
+  <title>BuzzPatch Login</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <nav>
-    <button onclick="showPage('garden')">Garden</button>
-    <button onclick="showPage('beedex')">BeeDex</button>
-    <button onclick="showPage('login')">Login</button>
-  </nav>
+  <div class="login-container">
+    <h2>Welcome to BuzzPatch!</h2>
+    <input type="text" id="username" placeholder="Enter your name" />
+    <button onclick="login()">Login</button>
+  </div>
 
-  <section id="garden" class="active">
-    <h1>BuzzPatch Bee Garden</h1>
-    <div id="gardenArea"></div>
-    <button onclick="doAction('water')">Water</button>
-    <button onclick="doAction('feed')">Feed</button>
-    <button onclick="doAction('sleep')">Sleep</button>
-  </section>
-
-  <section id="beedex">
-    <h1>Your BeeDex</h1>
-    <p>Coming soon!</p>
-  </section>
-
-  <section id="login">
-    <h1>Login</h1>
-    <form onsubmit="login(event)">
-      <input type="text" placeholder="Username" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <div id="beeContent" style="display:none;">
-      <p>Welcome to the hive! Here's all your bee info.</p>
+  <div class="facts-quiz-container hidden">
+    <h2>Hello, <span id="userNameDisplay"></span>! 🐝</h2>
+    <div class="facts">
+      <h3>Bee Fact:</h3>
+      <p id="beeFact">Click next to learn a fun bee fact!</p>
+      <button onclick="showNextFact()">Next Fact</button>
     </div>
-  </section>
+
+    <div class="quiz">
+      <h3>Bee Quiz 🧠</h3>
+      <p>What do bees collect from flowers?</p>
+      <button onclick="checkAnswer(this)">A. Honey</button>
+      <button onclick="checkAnswer(this)">B. Pollen</button>
+      <button onclick="checkAnswer(this)">C. Water</button>
+    </div>
+    <a href="garden.html" class="enter-garden">Enter Bee Garden 🏡</a>
+  </div>
 
   <script src="script.js"></script>
 </body>
