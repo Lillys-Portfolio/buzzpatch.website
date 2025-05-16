@@ -1,89 +1,46 @@
-// Screen references
-const loginScreen = document.getElementById('login-screen');
-const factsQuizScreen = document.getElementById('facts-quiz-screen');
-const beeGardenScreen = document.getElementById('bee-garden-screen');
+let currentUser = "bee";
+let currentPass = "buzz";
+let quizIndex = 0;
 
-const loginForm = document.getElementById('login-form');
-const loginError = document.getElementById('login-error');
-
-const quizButtons = document.querySelectorAll('.quiz-btn');
-const quizFeedback = document.getElementById('quiz-feedback');
-
-const toGardenBtn = document.getElementById('to-garden-btn');
-
-const logoutBtn1 = document.getElementById('logout-btn1');
-const logoutBtn2 = document.getElementById('logout-btn2');
-
-const garden = document.getElementById('garden');
-
-const feedBeeBtn = document.getElementById('feed-bee');
-const waterBeeBtn = document.getElementById('water-bee');
-const sleepBeeBtn = document.getElementById('sleep-bee');
-
-// Simple login validation
-loginForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const username = loginForm.username.value.trim();
-  const password = loginForm.password.value.trim();
-
-  // For demo: username=user, password=pass
-  if (username === 'user' && password === 'pass') {
-    loginError.textContent = '';
-    showScreen(factsQuizScreen);
-  } else {
-    loginError.textContent = 'Invalid username or password.';
-  }
-});
-
-// Quiz buttons event
-quizButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.answer === 'correct') {
-      quizFeedback.textContent = 'Correct! Bees have five eyes.';
-      quizFeedback.style.color = 'green';
+function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    if (user === currentUser && pass === currentPass) {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("factsPage").style.display = "block";
     } else {
-      quizFeedback.textContent = 'Wrong, try again.';
-      quizFeedback.style.color = 'red';
+        document.getElementById("loginError").innerText = "Incorrect login!";
     }
-  });
-});
-
-// Go to bee garden button
-toGardenBtn.addEventListener('click', () => {
-  quizFeedback.textContent = ''; // Clear feedback
-  showScreen(beeGardenScreen);
-});
-
-// Logout buttons
-logoutBtn1.addEventListener('click', () => {
-  showScreen(loginScreen);
-  loginForm.reset();
-  quizFeedback.textContent = '';
-  garden.innerHTML = ''; // Clear garden bees on logout
-});
-logoutBtn2.addEventListener('click', () => {
-  showScreen(loginScreen);
-  loginForm.reset();
-  quizFeedback.textContent = '';
-  garden.innerHTML = '';
-});
-
-// Screen switch helper
-function showScreen(screenToShow) {
-  [loginScreen, factsQuizScreen, beeGardenScreen].forEach(screen =>
-    screen.classList.remove('active')
-  );
-  screenToShow.classList.add('active');
 }
 
-// Add bee to garden
-function addBee() {
-  const bee = document.createElement('span');
-  bee.textContent = '🐝';
-  bee.classList.add('bee');
-  garden.appendChild(bee);
+function goToGarden() {
+    document.getElementById("factsPage").style.display = "none";
+    document.getElementById("gardenPage").style.display = "block";
 }
 
-feedBeeBtn.addEventListener('click', addBee);
-waterBeeBtn.addEventListener('click', addBee);
-sleepBeeBtn.addEventListener('click', addBee);
+function spawnBee(type) {
+    const bee = document.createElement("div");
+    bee.classList.add("bee");
+    const timeout = setTimeout(() => {
+        bee.classList.add("angry");
+    }, 5000); // turn red in 5 seconds if not clicked
+    bee.onclick = () => {
+        clearTimeout(timeout);
+        bee.remove();
+    };
+    document.getElementById("garden").appendChild(bee);
+}
+
+function nextQuestion() {
+    const slides = document.querySelectorAll(".quiz-slide");
+    slides[quizIndex].classList.remove("active");
+    quizIndex = (quizIndex + 1) % slides.length;
+    slides[quizIndex].classList.add("active");
+}
+
+function prevQuestion() {
+    const slides = document.querySelectorAll(".quiz-slide");
+    slides[quizIndex].classList.remove("active");
+    quizIndex = (quizIndex - 1 + slides.length) % slides.length;
+    slides[quizIndex].classList.add("active");
+}
