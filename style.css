@@ -1,4 +1,4 @@
- body {
+body {
   font-family: Arial, sans-serif;
   background-color: #d6f3f9; /* Sky Blue */
   color: #333;
@@ -68,7 +68,4 @@ button {
 
 .quiz-btn:hover {
   background-color: #ffda3d;
-} // Screen references
-const loginScreen = document.getElementById('login-screen');
-const factsQuizScreen = document.getElementById('facts-quiz-screen');
-const beeGardenScreen = document.getElementById('bee-garden-screen');
+}
