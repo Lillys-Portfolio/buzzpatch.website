@@ -4,40 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BuzzPatch Bee Garden</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- LOGIN PAGE -->
-  <div id="login-page" class="page">
+  <!-- LOGIN SCREEN -->
+  <section id="login-screen" class="screen active">
     <h2>Login</h2>
-    <input id="username" placeholder="Username" />
-    <input id="password" type="password" placeholder="Password" />
-    <button id="login-btn">Login</button>
-    <p id="login-error" class="error"></p>
-  </div>
+    <form id="login-form">
+      <label for="username">Username:</label><br/>
+      <input type="text" id="username" required /><br/><br/>
+      <label for="password">Password:</label><br/>
+      <input type="password" id="password" required /><br/><br/>
+      <button type="submit">Login</button>
+    </form>
+    <div id="login-error" class="error"></div>
+  </section>
 
-  <!-- FACTS & QUIZ PAGE -->
-  <div id="facts-quiz-page" class="page" style="display:none;">
+  <!-- FACTS & QUIZ SCREEN -->
+  <section id="facts-quiz-screen" class="screen">
     <h2>Bee Facts & Quiz</h2>
-    <div id="quiz-container">
-      <div id="quiz-question"></div>
-      <button id="prev-question">Previous</button>
-      <button id="next-question">Next</button>
+    <div id="bee-facts">
+      <ul>
+        <li>Bees communicate through dances.</li>
+        <li>Honey bees can recognize human faces.</li>
+        <li>Bees have five eyes.</li>
+      </ul>
     </div>
-    <button id="go-to-garden-btn">Go to Bee Garden</button>
-  </div>
+    <h3>Quiz</h3>
+    <p>How many eyes does a bee have?</p>
+    <button class="quiz-btn" data-answer="correct">5</button>
+    <button class="quiz-btn" data-answer="wrong">2</button>
+    <button class="quiz-btn" data-answer="wrong">3</button>
+    <div id="quiz-feedback"></div>
+    <br />
+    <button id="to-garden-btn">Go to Bee Garden</button>
+    <br /><br />
+    <button id="logout-btn1">Logout</button>
+  </section>
 
-  <!-- BEE GARDEN PAGE -->
-  <div id="bee-garden-page" class="page" style="display:none;">
-    <h2>Bee Garden</h2>
-    <div id="garden-controls">
-      <button id="feed-btn">Feed Bee</button>
-      <button id="water-btn">Water Bee</button>
-      <button id="sleep-btn">Put Bee to Sleep</button>
+  <!-- BEE GARDEN SCREEN -->
+  <section id="bee-garden-screen" class="screen">
+    <h2>BuzzPatch Bee Garden</h2>
+    <div id="garden" class="garden"></div>
+    <div class="controls">
+      <button id="feed-bee">Feed Bee</button>
+      <button id="water-bee">Water Bee</button>
+      <button id="sleep-bee">Sleep Bee</button>
     </div>
-    <div id="garden"></div>
-    <button id="logout-btn">Logout</button>
-  </div>
+    <br />
+    <button id="logout-btn2">Logout</button>
+  </section>
 
   <script src="script.js"></script>
 </body>
