@@ -34,10 +34,6 @@ Buzz Patch is a web-based game where users control a bee to pollinate flowers ac
 
 ---
 
-## Screenshot
-![Buzz Patch Screenshot](https://raw.githubusercontent.com/Lilly
----
-
 ## Live Demo
 Play the game live here: [Buzz Patch Website](https://lillys-portfolio.github.io/buzzpatch.website/)
 
